@@ -22,10 +22,10 @@ public class Application extends Controller  {
 	{
 		Canso song = Canso.find("byNom", nom).first();
 		if (song!=null) {
-			renderText("la canción " + nom + "  tiene la siguiente letra " + song.getLletra());
+			renderText("La cançó " + nom + "  té la següent lletra " + song.getLletra());
 		}
 		else{
-			renderText("no hay ninguna canción con ese nombre");
+			renderText("No hi ha cap cançó registrada amb aquest nom");
 		}
 	}
 
@@ -101,7 +101,7 @@ public class Application extends Controller  {
 		render(n,p);
 	}
 	public static void SuccessCantant(String n, String p) {
-		Canso c = new Canso("qwkdm", 2019, "qenceiuqlnicjnq");
+		Canso c = new Canso("Canço1", 2019, "Lletra de la canço1");
 		c.AddCantantNomPais(n, p);
 		c.save();
 		render(n,p);

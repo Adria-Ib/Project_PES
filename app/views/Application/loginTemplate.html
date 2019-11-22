@@ -1,8 +1,24 @@
-#{set title:'Home' /}
+#{set title:'Tonofsongz' /}
+#{extends 'main.html' /}
+<head>
+    <meta charset="UTF-8">
+    <title>TONOFSONGZ</title>
+</head>
 
+<body>
 <div id="login">
 
-
+    <h1>Benvinguts a TONOFSONGZ</h1>
+    <hr/>
+    <h2>La pàgina dels amants de la música, on trobaràs els continguts que més t'agraden</h2>
+    <br><br><br><br>
+    <h4>Introdueix el nom d'una cançó que vulguis buscar</h4>
+    <form action="@{Application.buscarCanso()}" method="GET">
+        <input type="text" name="nom" />
+        <input type="submit" value="Buscar" />
+    </form>
+    <br><br><br><br>
+    <h4>Comença a fer modificacions a la base de dades</h4>
     #{form @login(), id:'formLogin'}
     #{field 'user.nom'}
     <p class="field">
@@ -10,7 +26,6 @@
         <input type="text"  size="19" name="${field.name}" value="${admin?.nom}" />
     </p>
     #{/field}
-
     #{field 'user.password'}
     <p class="field">
         <label>Password:</label>
@@ -20,16 +35,12 @@
     <p class="buttons">
         <input type="submit" value="Account login" />
     </p>
+    <br><br>
     #{/form}
-
-    <form action="@{Application.buscarCanso()}" method="GET">
-        <input type="text" name="nom" />
-        <input type="submit" value="Buscar" />
-    </form>
-
-
+    <h4>Registra't a la web per poder fer modificacions a la nostra base de dades</h4>
     <p>
         <a href="@{register()}">Register New User</a>
     </p>
 
 </div>
+</body>
