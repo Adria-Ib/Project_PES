@@ -1,0 +1,25 @@
+#{set title:'Home' /}
+
+<div id="login">
+
+    <h5>Clica aquest botó si vols afegir un cantant a la nostra base de dades</h5>
+    </body>
+    </html>
+    <form action="@{Application.SubmitCantant()}" method="GET">
+        <input type="submit" value="Introdueix cantant" />
+    </form>
+    <br><br><br><br>
+    <h5>Clica aquest botó si vols afegir una cançó a la nostra base de dades</h5>
+    <form action="@{Application.SubmitCanso()}" method="GET">
+        <input type="submit" value="Introdueix cançó" />
+    </form>
+    <p>
+        <a href="@{loginTemplate()}">go back</a>
+    </p>
+    <br><br><br><br>
+    <h5>*************************************************</h5>
+    <form action="@{Application.logout()}" method="GET">
+        <input type="submit" value="LOG OUT" />
+    </form>
+
+</div>
