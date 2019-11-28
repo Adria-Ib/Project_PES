@@ -88,6 +88,17 @@ public class Application extends Controller  {
 		}
 	}
 
+	public static void loginandroid(@Valid Admin user){
+		Admin u = Admin.find("byNomAndPassword", user.nom, user.password).first();
+		if(u != null) {
+			//session.put("user", user.nom);
+			renderText("OK");
+		}else {
+			// Oops
+			renderText("FAIL");
+		}
+	}
+
 	public static void logout() {
 		session.clear();
 		renderArgs.put("client",null);
