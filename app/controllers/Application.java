@@ -2,9 +2,11 @@ package controllers;
 
 import models.Admin;
 import models.Canso;
+import models.Cantant;
 import play.*;
 import play.mvc.*;
 import play.data.validation.*;
+import java.util.*;
 
 public class Application extends Controller  {
 	@Before
@@ -88,7 +90,7 @@ public class Application extends Controller  {
 		}
 	}
 
-	public static void loginandroid(@Valid Admin user){
+	public static void loginandroid(Admin user){
 		Admin u = Admin.find("byNomAndPassword", user.nom, user.password).first();
 		if(u != null) {
 			//session.put("user", user.nom);
@@ -117,6 +119,17 @@ public class Application extends Controller  {
 		c.save();
 		render(n,p);
 	}
+
+	public static void GetCantants(){
+		List<Cantant> cantantList = Cantant.findAll();
+		renderJSON(cantantList);
+	}
+
+	public static void GetCantant(String cantant){
+		Cantant c = Cantant.find("NOM", cantant).first();
+		renderJSON(c);
+	}
+
 	public static void SuccessCanso(String ca, Integer num) {
 		render(ca,num);
 	}

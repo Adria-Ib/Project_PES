@@ -25,5 +25,11 @@ public class Cantant extends Model {
         this.pais = pais;
     }
 
+    public String getNom() {
+        return nom;
+    }
 
+    public String getPais() {
+        return pais;
+    }
 }
