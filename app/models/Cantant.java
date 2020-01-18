@@ -39,5 +39,11 @@ public class Cantant extends Model {
     }
 
 
+    public String getNom() {
+        return nom;
+    }
 
+    public String getPais() {
+        return pais;
+    }
 }
