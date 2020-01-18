@@ -7,10 +7,18 @@ import play.*;
 import play.mvc.*;
 import play.data.validation.*;
 import java.util.*;
+import flexjson.*;
 
 import java.util.List;
 
 public class Application extends Controller  {
+	private static JSONSerializer serializer = new JSONSerializer();
+
+
+	private static void returnJSON(Object object){
+		renderJSON(serializer.serialize(object));
+	}
+
 	@Before
 	static void addUser() {
     	Admin user = connected();
@@ -183,12 +191,17 @@ public class Application extends Controller  {
 
 	public static void GetCantants(){
 		List<Cantant> cantantList = Cantant.findAll();
-		renderJSON(cantantList);
+
+		returnJSON(/*serializer.serialize*/(cantantList));
 	}
 
 	public static void GetCantant(String cantant){
 		Cantant c = Cantant.find("NOM", cantant).first();
-		renderJSON(c);
+		returnJSON(c);
+	}
+	public static void GetCansonsByCantant(String cantant){
+		Cantant c = Cantant.find("NOM", cantant).first();
+		returnJSON(c.cansons);
 	}
 
 	public static void SuccessCanso(String ca, Integer num) {

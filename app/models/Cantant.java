@@ -14,7 +14,7 @@ public class Cantant extends Model {
     private String pais;
 
     @ManyToMany (mappedBy="cantants")
-    List<Canso> cansons = new ArrayList<Canso>();
+    public List<Canso> cansons = new ArrayList<Canso>();
 
     public Cantant(){
         nom = null;

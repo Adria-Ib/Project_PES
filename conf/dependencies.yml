@@ -4,4 +4,5 @@ require:
     - play
     - play -> docviewer
     - play -> crud
+    - net.sf.flexjson -> flexjson 2.1
     - secure
