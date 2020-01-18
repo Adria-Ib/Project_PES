@@ -13,7 +13,7 @@ public class Canso extends Model {
     private int data; //Any de creacio
     private String lletra;
 
-    @ManyToMany (mappedBy="cansons")
+    @ManyToMany
     List<Cantant> cantants = new ArrayList<Cantant>();
 
 
@@ -55,14 +55,17 @@ public class Canso extends Model {
         this.nom = nom;
         this.refresh();
     }
+    public String getCantant(int i){
+        return this.cantants.get(i).getNom();
+    }
+    public int getNum(){
+        return this.cantants.size();
+    }
 
-    public void AddCantantNomPais(String nom, String pais){
-        Cantant c = new Cantant(nom, pais);
+    public void AddCantantNomPais(String nom, String pais, Canso canso){
+        Cantant c = new Cantant(nom, pais,canso);
         c.save();
         cantants.add(c);
         //this.save();
     }
-    /*public void AddCantant(String nom){
-        Cantant c = Cantant.find()
-    }*/
 }

@@ -2,9 +2,12 @@ package controllers;
 
 import models.Admin;
 import models.Canso;
+import models.Cantant;
 import play.*;
 import play.mvc.*;
 import play.data.validation.*;
+
+import java.util.List;
 
 public class Application extends Controller  {
 	@Before
@@ -21,14 +24,77 @@ public class Application extends Controller  {
 	public static void buscarCanso(String nom)
 	{
 		Canso song = Canso.find("byNom", nom).first();
+		String s = "";
+		int u = 0;
 		if (song!=null) {
-			renderText("La cançó " + nom + "  té la següent lletra " + song.getLletra());
+			while(u < song.getNum()){
+				if(u == song.getNum() - 1 && u!= 0) {
+					s = s + " i " + song.getCantant(u);
+				}
+				if(u == song.getNum() - 1 && u== 0){
+					s = s + song.getCantant(u);
+				}
+				else{
+					s = s + song.getCantant(u) + ", ";
+				}
+				u = u + 1;
+			}
+			renderText("La cançó " + nom + " de " + s + "  té la següent lletra " + song.getLletra());
 		}
 		else{
 			renderText("No hi ha cap cançó registrada amb aquest nom");
 		}
 	}
 
+	public static void buscarCantant(String nom)
+	{
+		Cantant singer = Cantant.find("byNom", nom).first();
+		String s = "";
+		int u = 0;
+		if (singer!=null) {
+			while(u < singer.getNum()){
+				if(u == singer.getNum() - 1 && u!= 0) {
+					s = s + " i " + singer.getCanso(u);
+				}
+				if(u == singer.getNum() - 1 && u== 0){
+					s = s + singer.getCanso(u);
+				}
+				else{
+					s = s + singer.getCanso(u) + ", ";
+				}
+				u = u + 1;
+			}
+			renderText("En/Na " + nom + "  nascut a " + singer.getPais() + " es troba a la nostra base de dades\n"+"Les seves cansons son: " + s);
+		}
+		else{
+			renderText("No hi ha cap cantant registrat/da amb aquest nom");
+		}
+	} /*funcions mostrar cansons per any, buscar per pais del cantant, buscar per lletra una canso--> alike en lloc de byName*/
+	public static void buscarCansoAny(int any)
+	{
+		List<Canso> song = Canso.find("byData", any).fetch();
+		int u = song.size();
+		int w = 0;
+		String s ="";
+		if (song!=null) {
+			while(w < u) {
+				if (w == 0 && u == 1) {
+					s = s + song.get(w).getNom();
+				}
+
+				if (w == 0 && u != 1) {
+					s = s + song.get(w).getNom();
+				}
+				else {
+					s = s + song.get(w).getNom() + ", ";
+				}
+			}
+			renderText("Les cançons de l'any " + String.valueOf(any) + " son les següents " + s);
+		}
+		else{
+			renderText("No hi ha cap cançó publicada l'any " + String.valueOf(any) + " en les nostres bases de dades");
+		}
+	}
 	static Admin connected() {
 
 		if(renderArgs.get("client") != null) {
@@ -111,9 +177,9 @@ public class Application extends Controller  {
 	public static void SubmitCantant(String n, String p) {
 		render(n,p);
 	}
-	public static void SuccessCantant(String n, String p) {
+	public static void SuccessCantant(String n, String p, Canso canso) {
 		Canso c = new Canso("Canço1", 2019, "Lletra de la canço1");
-		c.AddCantantNomPais(n, p);
+		c.AddCantantNomPais(n, p,canso);
 		c.save();
 		render(n,p);
 	}
