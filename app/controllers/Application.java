@@ -74,21 +74,17 @@ public class Application extends Controller  {
 	{
 		List<Canso> song = Canso.find("byData", any).fetch();
 		int u = song.size();
+		boolean first = true;
 		int w = 0;
 		String s ="";
-		if (song!=null) {
-			while(w < u) {
-				if (w == 0 && u == 1) {
-					s = s + song.get(w).getNom();
-				}
-
-				if (w == 0 && u != 1) {
-					s = s + song.get(w).getNom();
-				}
-				else {
-					s = s + song.get(w).getNom() + ", ";
-				}
-			}
+        for (Canso c: song) {
+            if (!first) {
+                s += ", ";
+            }
+            first = false;
+            s = s + c.getNom();
+        }
+        if (u != 0){
 			renderText("Les cançons de l'any " + String.valueOf(any) + " son les següents " + s);
 		}
 		else{
