@@ -35,11 +35,11 @@
     }
 
     article {
-        float: left;
+        float: right;
         padding: 20px;
         width: 70%;
         background-color: #f1f1f1;
-        height: 300px; /* only for demonstration, should be removed */
+        height: 400px; /* only for demonstration, should be removed */
     }
 
     /* Clear floats after the columns */
@@ -79,13 +79,18 @@
     <hr/>
     <h2>La pàgina dels amants de la música, on trobaràs els continguts que més t'agraden</h2
     <br><br><br><br>
+    <article>
+        <iframe id="resposta">
+
+        </iframe>
+    </article>
     <section>
         <nav>
             <ul>
     <h4>Introdueix el nom d'una cançó que vulguis buscar</h4>
     <form action="@{Application.buscarCanso()}" method="GET">
         <input type="text" name="nom" />
-        <input type="submit" value="Buscar" />
+        <input type="button"  value="Buscar" />
     </form>
     <br><br><br>
     <h4>Introdueix el nom d'un/a cantant que vulguis buscar</h4>
@@ -121,9 +126,6 @@
         <input type="submit" value="Account login" />
     </p>
     #{/form}
-    <article>
-
-    </article>
     <footer>
     <h4>Registra't a la web per poder fer modificacions a la nostra base de dades</h4>
     <p>
