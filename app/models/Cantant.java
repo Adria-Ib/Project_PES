@@ -38,12 +38,4 @@ public class Cantant extends Model {
         return this.cansons.size();
     }
 
-
-    public String getNom() {
-        return nom;
-    }
-
-    public String getPais() {
-        return pais;
-    }
 }
