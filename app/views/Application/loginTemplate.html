@@ -77,25 +77,23 @@
     <h1>Benvinguts a TONOFSONGZ</h1>
     </header>
     <hr/>
-    <h2>La pàgina dels amants de la música, on trobaràs els continguts que més t'agraden</h2
+    <h2>La pàgina dels amants de la música, on trobaràs els continguts que més t'agraden</h2>
     <br><br><br><br>
     <article>
-        <iframe id="frm1" frameborder="0" scrolling="no" width="600" height="800">
-
+        <iframe id="frm1" frameborder="0" scrolling="YES" width="100%" height="100%">
         </iframe>
     </article>
     <section>
         <nav>
             <ul>
     <h4>Introdueix el nom d'una cançó que vulguis buscar</h4>
-    <form action="@{Application.buscarCanso()}" method="GET">
+    <form  method="POST" action="@{Application.buscarCanso()}">
         <input type="text" name="nom" />
         <input type="submit" onclick="myFunction()" value="Buscar" />
     </form>
-                @After
                 <script>
                     function myFunction() {
-                        document.getElementById("frm1").src = "@{Application.buscarCanso()}";
+                        document.getElementById("frm1").src = "@{Application.buscarCanso('nom')}";
                     }
                 </script>
     <br><br><br>
