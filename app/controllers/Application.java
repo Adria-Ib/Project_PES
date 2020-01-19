@@ -38,6 +38,7 @@ public class Application extends Controller  {
 	{
 		Canso song = Canso.find("byNom", nom).first();
 		String s = "";
+		String lyrics = "";
 		int u = 0;
 		if (song!=null) {
 			while(u < song.getNum()){
@@ -52,12 +53,12 @@ public class Application extends Controller  {
 				}
 				u = u + 1;
 			}
-			render(nom,s,song.getLletra());
+			lyrics = song.getLletra();
+			render(nom, s,lyrics);
 			//renderText("La cançó " + nom + " de " + s + "  té la següent lletra " + song.getLletra());
 		}
 		else{
-			render(0);
-			//renderJSON(2);
+			render('0');
 			//renderText("No hi ha cap cançó registrada amb aquest nom");
 		}
 	}
