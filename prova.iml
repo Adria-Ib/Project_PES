@@ -8,14 +8,14 @@
             <sourceFolder url="file://$MODULE_DIR$/app" isTestSource="false" />
             <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
         </content>
-                <content url="file://C:\Users\Dolors\Desktop\ALL2019\Play\play-1.5.3\modules\crud">
-            <sourceFolder url="file://C:/Users/Dolors/Desktop/ALL2019/Play/play-1.5.3/modules/crud/app" isTestSource="false" />
+                <content url="file:///home/anton/play/modules/docviewer">
+            <sourceFolder url="file:///home/anton/play/modules/docviewer/app" isTestSource="false" />
         </content>
-        <content url="file://C:\Users\Dolors\Desktop\ALL2019\Play\play-1.5.3\modules\docviewer">
-            <sourceFolder url="file://C:/Users/Dolors/Desktop/ALL2019/Play/play-1.5.3/modules/docviewer/app" isTestSource="false" />
+        <content url="file:///home/anton/play/modules/crud">
+            <sourceFolder url="file:///home/anton/play/modules/crud/app" isTestSource="false" />
         </content>
-        <content url="file://C:\Users\Dolors\Desktop\ALL2019\Play\play-1.5.3\modules\secure">
-            <sourceFolder url="file://C:/Users/Dolors/Desktop/ALL2019/Play/play-1.5.3/modules/secure/app" isTestSource="false" />
+        <content url="file:///home/anton/play/modules/secure">
+            <sourceFolder url="file:///home/anton/play/modules/secure/app" isTestSource="false" />
         </content>
 
         <orderEntry type="inheritedJdk" />
@@ -23,37 +23,37 @@
             <library name="Project Libraries">
                 <CLASSES>
                     <root url="file://$MODULE_DIR$/lib" />
-                    <root url="file://$MODULE_DIR$/C:Users/Dolors/Desktop/ALL2019/Play/play-1.5.3/modules/docviewer/lib"/>
+                    <root url="file://$MODULE_DIR$/../modules/docviewer/lib"/>
 
                 </CLASSES>
                 <JAVADOC />
                 <SOURCES>
-                                        <root url="file://$MODULE_DIR$/C:Users/Dolors/Desktop/ALL2019/Play/play-1.5.3/modules/docviewer/src"/>
+                                        <root url="file://$MODULE_DIR$/../modules/docviewer/src"/>
 
                 </SOURCES>
                 <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
-                                <jarDirectory url="file://$MODULE_DIR$/C:Users/Dolors/Desktop/ALL2019/Play/play-1.5.3/modules/docviewer/lib" recursive="false"/>
+                                <jarDirectory url="file://$MODULE_DIR$/../modules/docviewer/lib" recursive="false"/>
 
             </library>
         </orderEntry>
         <orderEntry type="module-library">
             <library name="PlayFramework Dependencies">
                 <CLASSES>
-                    <root url="file://C:/Users/Dolors/Desktop/ALL2019/Play/play-1.5.3/framework/lib" />
+                    <root url="file:///home/anton/play/framework/lib" />
                 </CLASSES>
                 <JAVADOC />
                 <SOURCES />
-                <jarDirectory url="file://C:/Users/Dolors/Desktop/ALL2019/Play/play-1.5.3/framework/lib" recursive="false" />
+                <jarDirectory url="file:///home/anton/play/framework/lib" recursive="false" />
             </library>
         </orderEntry>
         <orderEntry type="module-library">
             <library>
                 <CLASSES>
-                    <root url="jar://C:/Users/Dolors/Desktop/ALL2019/Play/play-1.5.3/framework/play-1.5.3.jar!/" />
+                    <root url="jar:///home/anton/play/framework/play-1.5.x-1.5.3-10-g04f1b9b0.jar!/" />
                 </CLASSES>
                 <JAVADOC />
                 <SOURCES>
-                    <root url="file://C:/Users/Dolors/Desktop/ALL2019/Play/play-1.5.3/framework/src" />
+                    <root url="file:///home/anton/play/framework/src" />
                 </SOURCES>
             </library>
         </orderEntry>

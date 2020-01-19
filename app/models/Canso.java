@@ -14,7 +14,7 @@ public class Canso extends Model {
     private String lletra;
 
     @ManyToMany
-    List<Cantant> cantants = new ArrayList<Cantant>();
+    public List<Cantant> cantants = new ArrayList<Cantant>();
 
 
     public Canso(){
