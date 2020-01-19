@@ -1,11 +1,15 @@
 package controllers;
 
+import jdk.nashorn.internal.ir.debug.JSONWriter;
 import models.Admin;
 import models.Canso;
 import models.Cantant;
+import netscape.javascript.JSObject;
 import play.*;
 import play.mvc.*;
 import play.data.validation.*;
+
+import javax.lang.model.type.NullType;
 import java.util.*;
 
 import java.util.List;
@@ -40,10 +44,13 @@ public class Application extends Controller  {
 				}
 				u = u + 1;
 			}
-			renderText("La cançó " + nom + " de " + s + "  té la següent lletra " + song.getLletra());
+			render(nom,s,song.getLletra());
+			//renderText("La cançó " + nom + " de " + s + "  té la següent lletra " + song.getLletra());
 		}
 		else{
-			renderText("No hi ha cap cançó registrada amb aquest nom");
+			render(0);
+			//renderJSON(2);
+			//renderText("No hi ha cap cançó registrada amb aquest nom");
 		}
 	}
 

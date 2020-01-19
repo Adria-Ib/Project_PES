@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>TONOFSONGZ</title>
+    <script>
+        function resizeIframe(obj) {
+            obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
+        }
+    </script>
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -80,7 +85,7 @@
     <h2>La pàgina dels amants de la música, on trobaràs els continguts que més t'agraden</h2
     <br><br><br><br>
     <article>
-        <iframe id="resposta">
+        <iframe id="frm1" frameborder="0" scrolling="no" >//onload="resizeIframe(this)">
 
         </iframe>
     </article>
@@ -90,8 +95,13 @@
     <h4>Introdueix el nom d'una cançó que vulguis buscar</h4>
     <form action="@{Application.buscarCanso()}" method="GET">
         <input type="text" name="nom" />
-        <input type="button"  value="Buscar" />
+        <input type="submit" onclick="myFunction()" value="Buscar" />
     </form>
+                <script>
+                    function myFunction() {
+                        document.getElementById("frm1").src = "@{Application.buscarCanso()}";
+                    }
+                </script>
     <br><br><br>
     <h4>Introdueix el nom d'un/a cantant que vulguis buscar</h4>
     <form action="@{Application.buscarCantant()}" method="GET">
