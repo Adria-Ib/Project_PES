@@ -203,6 +203,10 @@ public class Application extends Controller  {
 		Cantant c = Cantant.find("NOM", cantant).first();
 		returnJSON(c.cansons);
 	}
+	public static void GetCantantsByCanso(String canso){
+		Canso c = Canso.find("NOM", canso).first();
+		returnJSON(c.cantants);
+	}
 
 	public static void SuccessCanso(String ca, Integer num) {
 		render(ca,num);
