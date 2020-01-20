@@ -32,7 +32,6 @@ public class Application extends Controller  {
 		}
 	}
 
-	//User bob = User.find("byEmail", "bob@gmail.com").first();
 
 	public static void buscarCanso(String nom)
 	{
@@ -40,7 +39,7 @@ public class Application extends Controller  {
 		String s = "";
 		String lyrics = "";
 		int u = 0;
-		if (song!=null) {
+		if (song!=null && !nom.equals(" ")) {
 			while(u < song.getNum()){
 				if(u == song.getNum() - 1 && u!= 0) {
 					s = s + " i " + song.getCantant(u);
@@ -57,7 +56,7 @@ public class Application extends Controller  {
 			render(nom, s,lyrics);
 		}
 		else{
-			render('0');
+			render("Application/fail2.html");
 		}
 	}
 
@@ -67,7 +66,7 @@ public class Application extends Controller  {
 		String s = "";
 		String pais = "";
 		int u = 0;
-		if (singer!=null) {
+		if (singer!=null && !nom.equals(" ")) {
 			while(u < singer.getNum()){
 				if(u == singer.getNum() - 1 && u!= 0) {
 					s = s + " i " + singer.getCanso(u);
@@ -84,8 +83,7 @@ public class Application extends Controller  {
 			render(nom,pais,s);
 		}
 		else{
-			render('0');
-			//renderText("No hi ha cap cantant registrat/da amb aquest nom");
+			render("Application/fail2.html");
 		}
 	} /*funcions mostrar cansons per any, buscar per pais del cantant, buscar per lletra una canso--> alike en lloc de byName*/
 	public static void buscarCansoAny(String any)
@@ -95,19 +93,20 @@ public class Application extends Controller  {
 		boolean first = true;
 		int w = 0;
 		String s ="";
-        for (Canso c: song) {
-            if (!first) {
-                s += ", ";
-            }
-            first = false;
-            s = s + c.getNom();
-        }
-        if (u != 0){
-        	render(any,s);
+		if(!any.equals(" ")) {
+			for (Canso c : song) {
+				if (!first) {
+					s += ", ";
+				}
+				first = false;
+				s = s + c.getNom();
+			}
+			if (u != 0) {
+				render(any, s);
+			}
 		}
 		else{
-			render('0');
-			//render("No hi ha cap cançó publicada l'any " + String.valueOf(any) + " en les nostres bases de dades");
+			render("Application/fail2.html");
 		}
 	}
 	static Admin connected() {
@@ -185,6 +184,9 @@ public class Application extends Controller  {
 		session.clear();
 		renderArgs.put("client",null);
 		renderTemplate("Application/loginTemplate.html");
+	}
+	public static void fail2(){
+		render();
 	}
 
 	public static void getInfoSession(){
