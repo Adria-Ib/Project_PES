@@ -4,7 +4,6 @@
 
 # Home page
 GET     /                                       Application.loginTemplate
-POST     /                                       Application.buscarCanso
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

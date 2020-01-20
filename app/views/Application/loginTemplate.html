@@ -80,42 +80,48 @@
     <h2>La pàgina dels amants de la música, on trobaràs els continguts que més t'agraden</h2>
     <br><br><br><br>
     <article>
-        <iframe id="frm1" frameborder="0" scrolling="YES" width="100%" height="100%">
+        <iframe id="ifrm1" frameborder="0" scrolling="NO" width="100%" height="100%" src="">
         </iframe>
     </article>
     <section>
         <nav>
             <ul>
     <h4>Introdueix el nom d'una cançó que vulguis buscar</h4>
-    <form  method="POST" action="@{Application.buscarCanso()}">
+    <form id="frm1">
         <input type="text" name="nom" />
-        <input type="submit" onclick="myFunction()" value="Buscar" />
+        <input type="button" onclick="myFunction()" value="Buscar" />
     </form>
                 <script>
                     function myFunction() {
-                        document.getElementById("frm1").src = "@{Application.buscarCanso('nom')}";
+                        var x = document.forms["frm1"]["nom"].value;
+                        var y = "//localhost:9000/Application/BuscarCanso?nom=" + x;
+                        document.getElementById("ifrm1").src = y;
                     }
                 </script>
     <br><br><br>
     <h4>Introdueix el nom d'un/a cantant que vulguis buscar</h4>
-    <form action="@{Application.buscarCantant()}" method="GET">
+    <form id="frm2">
         <input type="text" name="nom" />
-        <input type="submit" onclick="myFunction2()" value="Buscar" />
+        <input type="button" onclick="myFunction2()" value="Buscar" />
     </form>
                 <script>
                     function myFunction2() {
-                        document.getElementById("frm1").src = "@{Application.buscarCantant()}";
+                        var x = document.forms["frm2"]["nom"].value;
+                        var y = "//localhost:9000/Application/BuscarCantant?nom=" + x;
+                        document.getElementById("ifrm1").src = y;
                     }
                 </script>
     <br><br><br>
     <h4>Introdueix l'any del qual vols trobar cançons</h4>
-    <form action="@{Application.buscarCansoAny()}" method="GET">
-        <input type="number" name="any" />
-        <input type="submit" onclick="myFunction3()" value="Buscar" />
+    <form id="frm3">
+        <input type="text" name="any" />
+        <input type="button" onclick="myFunction3()" value="Buscar" />
     </form>
                 <script>
                     function myFunction3() {
-                        document.getElementById("frm1").src = "@{Application.buscarCansoAny()}";
+                        var x = document.forms["frm3"]["any"].value;
+                        var y = "//localhost:9000/Application/BuscarCansoAny?any=" + x;
+                        document.getElementById("ifrm1").src = y;
                     }
                 </script>
             </ul>

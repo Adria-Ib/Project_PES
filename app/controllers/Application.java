@@ -55,11 +55,9 @@ public class Application extends Controller  {
 			}
 			lyrics = song.getLletra();
 			render(nom, s,lyrics);
-			//renderText("La cançó " + nom + " de " + s + "  té la següent lletra " + song.getLletra());
 		}
 		else{
 			render('0');
-			//renderText("No hi ha cap cançó registrada amb aquest nom");
 		}
 	}
 
@@ -67,6 +65,7 @@ public class Application extends Controller  {
 	{
 		Cantant singer = Cantant.find("byNom", nom).first();
 		String s = "";
+		String pais = "";
 		int u = 0;
 		if (singer!=null) {
 			while(u < singer.getNum()){
@@ -81,15 +80,17 @@ public class Application extends Controller  {
 				}
 				u = u + 1;
 			}
-			renderText("En/Na " + nom + "  nascut a " + singer.getPais() + " es troba a la nostra base de dades\n"+"Les seves cansons son: " + s);
+			pais = singer.getPais();
+			render(nom,pais,s);
 		}
 		else{
-			renderText("No hi ha cap cantant registrat/da amb aquest nom");
+			render('0');
+			//renderText("No hi ha cap cantant registrat/da amb aquest nom");
 		}
 	} /*funcions mostrar cansons per any, buscar per pais del cantant, buscar per lletra una canso--> alike en lloc de byName*/
-	public static void buscarCansoAny(int any)
+	public static void buscarCansoAny(String any)
 	{
-		List<Canso> song = Canso.find("byData", any).fetch();
+		List<Canso> song = Canso.find("byData", Integer.parseInt(any)).fetch();
 		int u = song.size();
 		boolean first = true;
 		int w = 0;
@@ -102,10 +103,11 @@ public class Application extends Controller  {
             s = s + c.getNom();
         }
         if (u != 0){
-			renderText("Les cançons de l'any " + String.valueOf(any) + " son les següents " + s);
+        	render(any,s);
 		}
 		else{
-			renderText("No hi ha cap cançó publicada l'any " + String.valueOf(any) + " en les nostres bases de dades");
+			render('0');
+			//render("No hi ha cap cançó publicada l'any " + String.valueOf(any) + " en les nostres bases de dades");
 		}
 	}
 	static Admin connected() {
