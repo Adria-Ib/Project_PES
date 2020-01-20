@@ -1,25 +1,122 @@
-#{set title:'Home' /}
+#{set title:'Benvingut/da editor/a' /}
+#{extends 'main.html' /}
+<head>
+    <meta charset="UTF-8">
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    /* Style the header */
+    header {
+        background-color: indianred;
+        padding: 20px;
+        text-align: center;
+        font-size: 30px;
+        color: white;
+    }
+    /* Create two columns/boxes that floats next to each other */
+    nav {
+        float: left;
+        width: 30%;
+        height: 450px; /* only for demonstration, should be removed */
+        background: #ccc;
+        padding: 20px;
+    }
+    /* Style the list inside the menu */
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+    }
 
+    article {
+        float: right;
+        padding: 20px;
+        width: 70%;
+        background-color: #f1f1f1;
+        height: 400px; /* only for demonstration, should be removed */
+    }
+
+    /* Clear floats after the columns */
+    section:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* Style the footer */
+    footer {
+        background-color: #568C00;
+        padding: 10px;
+        text-align: center;
+        color: white;
+    }
+
+    /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+    @media (max-width: 600px) {
+        nav, article {
+            width: 100%;
+            height: auto;
+        }
+    }
+</style>
+<body>
+<style>
+    body {background-color: blanchedalmond;}
+    h1   {color: blue;}
+    h2    {color: black;}
+    h4    {color: lightseagreen}
+</style>
 <div id="login">
-
-    <h5>Clica aquest botó si vols afegir un cantant a la nostra base de dades</h5>
-    </body>
-    </html>
-    <form action="@{Application.SubmitCantant()}" method="GET">
-        <input type="submit" value="Introdueix cantant" />
-    </form>
-    <br><br><br><br>
-    <h5>Clica aquest botó si vols afegir una cançó a la nostra base de dades</h5>
-    <form action="@{Application.SubmitCanso()}" method="GET">
-        <input type="submit" value="Introdueix cançó" />
-    </form>
-    <p>
-        <a href="@{loginTemplate()}">go back</a>
-    </p>
-    <br><br><br><br>
-    <h5>*************************************************</h5>
-    <form action="@{Application.logout()}" method="GET">
-        <input type="submit" value="LOG OUT" />
-    </form>
+    <header>
+        Benvingut ${nom ?: 'nothing'}
+    </header>
+    <hr/>
+    <article>
+        <iframe id="ifrm1" frameborder="0" scrolling="YES" width="100%" height="100%" src="">
+        </iframe>
+    </article>
+    <section>
+        <nav>
+            <ul>
+                <h5>Clica aquest botó si vols afegir un cantant a la nostra base de dades</h5>
+                <form id="frm1"><!--action="@{Application.SubmitCantant()}" method="GET">-->
+                    <input type="button" onclick="myFunction()" value="Introdueix cantant" />
+                </form>
+                <script>
+                    function myFunction() {
+                        var y = "//localhost:9000/Application/SubmitCantant";
+                        document.getElementById("ifrm1").src = y;
+                    }
+                </script>
+                <br><br><br>
+                <h5>Clica aquest botó si vols afegir una cançó a la nostra base de dades</h5>
+                <form id="frm2"> <!--action="@{Application.SubmitCanso()}" method="GET">-->
+                    <input type="button" onclick="myFunction2()" value="Introdueix cançó" />
+                </form>
+                <script>
+                    function myFunction2() {
+                        var y = "//localhost:9000/Application/SubmitCanso";
+                        document.getElementById("ifrm1").src = y;
+                    }
+                </script>
+                <br><br><br>
+            </ul>
+        </nav>
+    </section>
+    <footer>
+        <p>
+            <a href="@{loginTemplate()}">go back</a>
+        </p>
+        <h5>*************************************************</h5>
+        <form action="@{Application.logout()}" method="GET">
+            <input type="submit" value="LOG OUT" />
+        </form>
+    </footer>
 
 </div>
+</body>

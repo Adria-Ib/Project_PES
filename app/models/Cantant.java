@@ -20,6 +20,10 @@ public class Cantant extends Model {
         nom = null;
         pais = null;
     }
+    public Cantant(String nom, String pais){
+        this.nom = nom;
+        this.pais = pais;
+    }
     public Cantant(String nom, String pais, Canso canso){
         this.nom = nom;
         this.pais = pais;

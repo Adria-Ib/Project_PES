@@ -1,29 +1,86 @@
 #{extends 'main.html' /}
-#{set title:'Register' /}
+#{set title:'Registra`t' /}
 
-<h1>Register</h1>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    /* Style the header */
+    header {
+        background-color: indianred;
+        padding: 10px;
+        text-align: center;
+        font-size: 20px;
+        color: white;
+    }
+    /* Create two columns/boxes that floats next to each other */
+    article {
+        margin-left: 25%;
+        /*place-self: center;*/
+        text-align: center;
+        width: 50%;
+        /* height: 450px;  only for demonstration, should be removed */
+        background: #ccc;
+        padding: 20px;
+    }
+    /* Style the footer */
+    footer {
+        background-color: #568C00;
+        padding: 10px;
+        text-align: center;
+        color: white;
+    }
+</style>
+<body>
+<style>
+    body {background-color: blanchedalmond;}
+    h1   {color: blue;}
+    h2    {color: black;}
+    h4    {color: lightseagreen}
+</style>
+<div id="Registre">
+    <header>
+        <h1>REGISTRE</h1>
+    </header>
+    <hr/>
+    <center><h2>Registra't al web i podràs editar la nostra base de dades</h2></center>
+    <br><br><br><br>
+        <article>
+                #{form @saveUser()}
+                #{field 'user.nom'}
+                <p class="${field.errorClass}">
+                    <strong>Username:</strong> <input type="text" name="${field.name}" size="16"> <!--value="${client?.nom}"> *-->
+                    <span class="error">${field.error}</span>
+                </p>
+                #{/field}
 
-#{form @saveUser()}
-    #{field 'user.nom'}
-        <p class="${field.errorClass}">
-            <strong>Username:</strong> <input type="text" name="${field.name}" size="16" value="${client?.nom}"> *
-            <span class="error">${field.error}</span>
+                #{field 'user.password'}
+                <p class="${field.errorClass}">
+                    <strong>Password:</strong> <input type="password" name="${field.name}" size="16"><!-- value="${client?.password}"> * -->
+                    <span class="error">${field.error}</span>
+                </p>
+                #{/field}
+                #{field 'verifyPassword'}
+                <p class="${field.errorClass}">
+                    <strong>Verify password:</strong> <input type="password" name="${field.name}" size="16"><!-- value="${verifyPassword}"> *-->
+                    <span class="error">${field.error}</span>
+                </p>
+                #{/field}
+            <br><br>
+                <p class="buttons">
+                    <input type="submit" value="Register">
+                </p>
+                #{/form}
+        </article>
+    <footer>
+        <h4>Ves enrere, torna a la pàgina d'inici</h4>
+        <p>
+            <a href="@{loginTemplate()}">Fes enrere</a>
         </p>
-    #{/field}
-
-    #{field 'user.password'}
-        <p class="${field.errorClass}">
-            <strong>Password:</strong> <input type="password" name="${field.name}" size="16" value="${client?.password}"> *
-            <span class="error">${field.error}</span>
-        </p>
-    #{/field}
-    #{field 'verifyPassword'}
-        <p class="${field.errorClass}">
-            <strong>Verify password:</strong> <input type="password" name="${field.name}" size="16" value="${verifyPassword}"> *
-            <span class="error">${field.error}</span>
-        </p>
-    #{/field}    
-    <p class="buttons">
-        <input type="submit" value="Register"> <a href="@{loginTemplate()}">Cancel</a>
-    </p>
-#{/form}
+    </footer>
+</div>
+</body>

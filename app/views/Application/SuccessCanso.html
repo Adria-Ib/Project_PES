@@ -6,9 +6,11 @@
 </head>
 <br><br><br><br>
 <body>
-<h1>La cançó ${ca ?: 'nomCanso'} publicada el ${num ?: 'data'} ha estat afegida a la base de dades</h1>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-<a href="@{home()}">Tornar a la pàgina d'inici</a>
+<h2>La cançó ${nom ?: 'nomCanso'} publicada el ${data ?: 'data'} del/de la cantant ${cantants ?: 'Manolo'} ha estat afegida a la base de dades</h2>
+<h2> La seva lletra es: </h2>
+<br>
+<h2>${lletra ?: 'LOL LOL LOL LOL'}</h2>
+<!--<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<a href="@{home()}">Tornar a la pàgina d'inici</a>-->
 </body>
 </html>

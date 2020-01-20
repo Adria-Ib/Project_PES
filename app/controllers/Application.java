@@ -162,10 +162,11 @@ public class Application extends Controller  {
 		Admin u = Admin.find("byNomAndPassword", user.nom, user.password).first();
 		if(u != null) {
 			session.put("user", user.nom);
-			renderTemplate("Application/home.html");
+			String nom = user.nom;
+			render("Application/home.html",nom);
 		}else {
 			// Oops
-			renderText("User not registered");
+			render("Application/fail.html");
 		}
 	}
 
@@ -192,11 +193,68 @@ public class Application extends Controller  {
 	public static void SubmitCantant(String n, String p) {
 		render(n,p);
 	}
-	public static void SuccessCantant(String n, String p, Canso canso) {
-		Canso c = new Canso("Canço1", 2019, "Lletra de la canço1");
-		c.AddCantantNomPais(n, p,canso);
-		c.save();
-		render(n,p);
+	public static void AddCantant(String nom, String pais) {
+		Cantant c = Cantant.find("NOM", nom).first();
+		if (c == null) {
+			c = new Cantant(nom,pais);
+			c.save();
+			renderText("OK");
+		}
+		else{
+			renderText("Alredy exists");
+		}
+	}
+	public static void AddCanso(String nom, String data, String lletra, String cantants){
+		Canso song = Canso.find("byNom", nom).first();
+		if(song == null){
+			song = new Canso(nom, Integer.decode(data), lletra);
+			String [] cantantsStrings = cantants.split(";");
+			Cantant cantant;
+			for (String c:cantantsStrings) {
+				cantant = Cantant.find("byNom", c).first();
+				if(cantant != null){
+					song.cantants.add(cantant);
+				}
+			}
+			song.save();
+			renderText("OK");
+		}
+		else{
+			renderText("Song with this name already exists");
+		}
+	}
+	public static void AddCansoWEB(String nom, String data, String lletra, String cantants){
+		Canso song = Canso.find("byNom", nom).first();
+		if(song == null){
+			song = new Canso(nom, Integer.decode(data), lletra);
+			String [] cantantsStrings = cantants.split(";");
+			Cantant cantant;
+			for (String c:cantantsStrings) {
+				cantant = Cantant.find("byNom", c).first();
+				if(cantant != null){
+					song.cantants.add(cantant);
+				}
+			}
+			song.save();
+			render("@SuccessCanso",nom,data,lletra,cantants);
+		}
+		else{
+			renderText("Una cançó amb aquest nom ja existeix");
+		}
+	}
+	public static void AddCantantWEB(String nom, String pais) {
+		Cantant c = Cantant.find("NOM", nom).first();
+		if (c == null) {
+			c = new Cantant(nom,pais);
+			c.save();
+			render("@SuccessCantant",nom,pais);
+		}
+		else{
+			renderText("Alredy exists");
+		}
+	}
+	public static void SuccessCantant(String n, String p) {
+		AddCantantWEB(n,p);
 	}
 
 	public static void GetCantants(){
@@ -218,8 +276,8 @@ public class Application extends Controller  {
 		returnJSON(c.cantants);
 	}
 
-	public static void SuccessCanso(String ca, Integer num) {
-		render(ca,num);
+	public static void SuccessCanso(String nom, String data, String lletra, String cantants){
+		AddCansoWEB(nom,data,lletra,cantants);
 	}
 	public static void SubmitCanso(String n, String p) {
 		render(n,p);
