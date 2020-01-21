@@ -239,7 +239,7 @@ public class Application extends Controller  {
 			renderText("Song with this name already exists");
 		}
 	}
-	public static void AddCansoWEB(String nom, String data, String lletra, String cantants){
+	public static void AddCansoWEB(String cantants, String nom, String lletra, String data){
 		Canso song = Canso.find("byNom", nom).first();
 		if(song == null){
 			song = new Canso(nom, Integer.decode(data), lletra);
