@@ -29,13 +29,13 @@ public class Cantant extends Model {
         this.pais = pais;
         this.cansons.add(canso);
     }
-    public String getNom(){
-        return this.nom;
+    public String getNom() {
+        return nom;
     }
     public String getPais(){
         return this.pais;
     }
-    public String getCanso(int i) {
+    public String getCantant(int i) {
         return this.cansons.get(i).getNom();
     }
     public int getNum(){

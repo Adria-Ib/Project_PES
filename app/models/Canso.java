@@ -62,8 +62,8 @@ public class Canso extends Model {
         return this.cantants.size();
     }
 
-    public void AddCantantNomPais(String nom, String pais, Canso canso){
-        Cantant c = new Cantant(nom, pais,canso);
+    public void AddCantantNomPais(String nom, String pais){
+        Cantant c = new Cantant(nom, pais);
         c.save();
         cantants.add(c);
         //this.save();
