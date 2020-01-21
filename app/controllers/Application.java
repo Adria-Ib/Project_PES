@@ -206,8 +206,8 @@ public class Application extends Controller  {
 	public static void SubmitCantant(String n, String p) {
 		render(n,p);
 	}
-    public static void SubmitCanso(String cantants, String nom, String lletra, String data) {
-	    render(cantants,nom,lletra,data);
+    public static void SubmitCanso(String cantant, String nom, String lletra, String data) {
+	    render(cantant,nom,lletra,data);
     }
 	public static void AddCantant(String nom, String pais) {
 		Cantant c = Cantant.find("NOM", nom).first();
@@ -239,20 +239,24 @@ public class Application extends Controller  {
 			renderText("Song with this name already exists");
 		}
 	}
-	public static void AddCansoWEB(String cantants, String nom, String lletra, String data){
+	public static void AddCansoWEB(String cantant, String nom, String lletra, String data){
 		Canso song = Canso.find("byNom", nom).first();
 		if(song == null){
-			song = new Canso(nom, Integer.decode(data), lletra);
-			String [] cantantsStrings = cantants.split(";");
-			Cantant cantant;
-			for (String c:cantantsStrings) {
-				cantant = Cantant.find("byNom", c).first();
-				if(cantant != null){
-					song.cantants.add(cantant);
-				}
+			song = new Canso(nom, Integer.parseInt(data), lletra);
+			Cantant c = Cantant.find("NOM", cantant).first();
+			if (c == null) {
+				c = new Cantant(cantant);
+				song.cantants.add(c);
+				c.cansons.add(song);
+				c.save();
+			}
+			else{
+				song.addCantant(cantant);
+				c.AddCanso(song);
 			}
 			song.save();
-			render("@SuccessCanso",nom,data,lletra,cantants);
+
+			render("@SuccessCanso",nom,data,lletra,cantant);
 		}
 		else{
 			renderText("Una cançó amb aquest nom ja existeix");
@@ -272,8 +276,8 @@ public class Application extends Controller  {
 	public static void SuccessCantant(String n, String p) {
 		AddCantantWEB(n,p);
 	}
-    public static void SuccessCanso(String cantants, String nom, String lletra, String data) {
-        AddCansoWEB(cantants, nom, lletra,data);
+    public static void SuccessCanso(String cantant, String nom, String lletra, String data) {
+        AddCansoWEB(cantant, nom, lletra,data);
     }
 	public static void GetCantant(String cantant){
 		Cantant c = Cantant.find("NOM", cantant).first();

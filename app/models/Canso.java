@@ -67,4 +67,12 @@ public class Canso extends Model {
         cantants.add(c);
         //this.save();
     }
+
+    public void addCantant(String nom) {
+        Cantant c = Cantant.find("NOM", nom).first();
+        if (c == null) {
+            c = new Cantant(nom);
+            c.save();
+        }
+    }
 }
