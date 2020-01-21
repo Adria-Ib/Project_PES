@@ -206,6 +206,9 @@ public class Application extends Controller  {
 	public static void SubmitCantant(String n, String p) {
 		render(n,p);
 	}
+    public static void SubmitCanso(String cantants, String nom, String lletra, String data) {
+	    render(cantants,nom,lletra,data);
+    }
 	public static void AddCantant(String nom, String pais) {
 		Cantant c = Cantant.find("NOM", nom).first();
 		if (c == null) {
@@ -269,6 +272,9 @@ public class Application extends Controller  {
 	public static void SuccessCantant(String n, String p) {
 		AddCantantWEB(n,p);
 	}
+    public static void SuccessCanso(String cantants, String nom, String lletra, String data) {
+        AddCansoWEB(cantants, nom, lletra,data);
+    }
 	public static void GetCantant(String cantant){
 		Cantant c = Cantant.find("NOM", cantant).first();
 		returnJSON(c);
