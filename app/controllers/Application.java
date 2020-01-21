@@ -50,7 +50,7 @@ public class Application extends Controller  {
 					s += ", ";
 				}
 				first = false;
-				s = s + c.getCantant(u);
+				s = s + c.getCantant(w);
 				lyrics = c.getLletra();
 				w += 1;
 			}

@@ -57,6 +57,9 @@ public class Canso extends Model {
     public int getNum(){
         return this.cantants.size();
     }
+    public void AddCantant(Cantant singer){
+        this.cantants.add(singer);
+    }
 
     public void AddCantantNomPais(String nom, String pais){
         Cantant c = new Cantant(nom, pais);

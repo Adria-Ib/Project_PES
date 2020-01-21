@@ -29,6 +29,7 @@ public class Cantant extends Model {
         this.pais = pais;
         this.cansons.add(canso);
     }
+    public void AddCanso(Canso can){ this.cansons.add(can); }
     public String getNom() {
         return nom;
     }
