@@ -35,31 +35,34 @@ public class Application extends Controller  {
 
 	public static void buscarCanso(String nom)
 	{
-		Canso song = Canso.find("byNom", nom).first();
-		String s = "";
-		String lyrics = "";
-		int u = 0;
-		if (song!=null && (!nom.equals(" ") || !nom.equals("")) ) {
-			while(u < song.getNum()){
-				if(u == song.getNum() - 1 && u!= 0) {
-					s = s + " i " + song.getCantant(u);
-				}
-				if(u == song.getNum() - 1 && u== 0){
-					s = s + song.getCantant(u);
-				}
-				else{
-					s = s + song.getCantant(u) + ", ";
-				}
-				u = u + 1;
-			}
-			lyrics = song.getLletra();
-			render(nom, s,lyrics);
-		}
 		if(nom.equals("")){
 			render("Application/fail2.html");
 		}
-		else{
-			renderText("La cançó " +nom+ " no està a la base de dades");
+		if(!nom.equals("") ) {
+			List<Canso> song = Canso.find("byNom", nom).fetch();
+			int u = song.size();
+			int w = 0;
+			boolean first = true;
+			String s ="";
+			String lyrics="";
+			for (Canso c : song) {
+				if (!first) {
+					s += ", ";
+				}
+				first = false;
+				s = s + c.getCantant(u);
+				lyrics = c.getLletra();
+				w += 1;
+			}
+			if (u != 0) {
+				render(nom, s, lyrics);
+			}
+			else{
+				renderText("La cançó " +nom+ " no està a la base de dades");
+			}
+		}
+		if(nom.equals("")){
+			render("Application/fail2.html");
 		}
 	}
 
@@ -68,12 +71,17 @@ public class Application extends Controller  {
 		Cantant singer = Cantant.find("byNom", nom).first();
 		String s = "";
 		String pais = "";
-		int u = 1;
+		int u = 0;
 		if (singer!=null && (!nom.equals(" ") || !nom.equals(""))) {
-			while(u < singer.getNum() -1){
-				s = s + singer.getCantant(u);
-				if(u != singer.getNum() -2){
-					s = s + ", ";
+			while(u < singer.getNum()){
+				if(u == singer.getNum() - 1 && u!= 0) {
+					s = s + " i " + singer.getCanso(u);
+				}
+				if(u == singer.getNum() - 1 && u== 0){
+					s = s + singer.getCanso(u);
+				}
+				else{
+					s = s + singer.getCanso(u) + ", ";
 				}
 				u = u + 1;
 			}
@@ -96,7 +104,6 @@ public class Application extends Controller  {
 			List<Canso> song = Canso.find("byData", Integer.parseInt(any)).fetch();
 			int u = song.size();
 			boolean first = true;
-			int w = 0;
 			String s ="";
 			for (Canso c : song) {
 				if (!first) {

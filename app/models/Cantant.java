@@ -35,7 +35,7 @@ public class Cantant extends Model {
     public String getPais(){
         return this.pais;
     }
-    public String getCantant(int i) {
+    public String getCanso(int i) {
         return this.cansons.get(i).getNom();
     }
     public int getNum(){

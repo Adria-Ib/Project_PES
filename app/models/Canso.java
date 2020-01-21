@@ -29,17 +29,13 @@ public class Canso extends Model {
         this.lletra = lletra;
     }
 
-    public String getNom() {
-        return nom;
-    }
+    public String getNom() { return nom;}
 
     public int getData() {
         return data;
     }
 
-    public String getLletra() {
-        return lletra;
-    }
+    public String getLletra() { return lletra;}
 
     public void setData(int data) {
         this.data = data;
