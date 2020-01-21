@@ -262,38 +262,6 @@ public class Application extends Controller  {
 	public static void SuccessCantant(String n, String p) {
 		AddCantantWEB(n,p);
 	}
-
-	public static void GetCantants(){
-		List<Cantant> cantantList = Cantant.findAll();
-
-		returnJSON(/*serializer.serialize*/(cantantList));
-	}
-
-	public static void GetCantant(String cantant){
-		Cantant c = Cantant.find("NOM", cantant).first();
-		returnJSON(c);
-	}
-	public static void GetCansonsByCantant(String cantant){
-		Cantant c = Cantant.find("NOM", cantant).first();
-		returnJSON(c.cansons);
-	}
-	public static void GetCantantsByCanso(String canso){
-		Canso c = Canso.find("NOM", canso).first();
-		returnJSON(c.cantants);
-	}
-
-	public static void SuccessCanso(String nom, String data, String lletra, String cantants){
-		AddCansoWEB(nom,data,lletra,cantants);
-	}
-	public static void SubmitCanso(String n, String p) {
-		render(n,p);
-	}
-	public static void GetCantants(){
-		List<Cantant> cantantList = Cantant.findAll();
-
-		returnJSON(/serializer.serialize/(cantantList));
-	}
-
 	public static void GetCantant(String cantant){
 		Cantant c = Cantant.find("NOM", cantant).first();
 		returnJSON(c);
