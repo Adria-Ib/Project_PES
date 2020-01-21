@@ -24,26 +24,35 @@ public class BootStrap extends Job {
             Cantant a3 = new Cantant("Steve Angello", "Suècia");
             a3.save();
             a3.AddCanso(a);
-
+            a.AddCantant(a1);
+            a.AddCantant(a2);
+            a.AddCantant(a3);
             a.save();
             Canso b= new Canso("Belong", 2016, "Take a look at how I'm doing There's only so much to get me through the day Take a deep breath of a smell that I ...").save();
             a1.AddCanso(b);
             Cantant a4 = new Cantant( "Shapov", "Rússia");
             a4.save();
             a4.AddCanso(b);
+            b.AddCantant(a1);
+            b.AddCantant(a4);
             b.save();
             Canso c = new Canso("Remember", 2015, "Remember when you had a dream? Remember when you had a heart? Remember when it was so simple, this world...").save();
             a3.AddCanso(c);
+            c.AddCantant(a3);
             c.save();
             Canso d = new Canso("Calling (Lose my mind)", 2011, "I see you walking through the rain And I see the water covering your teardrops on your face...").save();
             a2.AddCanso(d);
             Cantant a5 = new Cantant( "Alesso", "Suècia");
             a5.save();
             a5.AddCanso(d);
+            d.AddCantant(a2);
+            d.AddCantant(a5);
             d.save();
             Canso e = new Canso("More than you know", 2017, "I saw it coming, from miles away I better speak up if I got something to say 'Cause it ain't over...").save();
             a1.AddCanso(e);
             a2.AddCanso(e);
+            e.AddCantant(a1);
+            e.AddCantant(a2);
             e.save();
         }
     }
